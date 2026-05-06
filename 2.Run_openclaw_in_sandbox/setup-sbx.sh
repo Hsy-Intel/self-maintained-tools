@@ -324,7 +324,7 @@ sync_gateway_mode_and_bind() {
 echo ""
 if [[ "$IMAGE_NAME" == "openclaw:local" ]]; then
   echo "==> Building Docker image: $IMAGE_NAME (OPENCLAW_INSTALL_DOCKER_CLI=1)"
-  docker build \
+  DOCKER_BUILDKIT=1 docker build \
     --build-arg "OPENCLAW_INSTALL_DOCKER_CLI=1" \
     -t "$IMAGE_NAME" \
     -f "$ROOT_DIR/Dockerfile" \
