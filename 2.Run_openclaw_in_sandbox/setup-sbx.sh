@@ -38,7 +38,7 @@
 set -euo pipefail
 set -x
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SBX_COMPOSE_FILE="$ROOT_DIR/docker-compose.sbx.yml"
 ENV_FILE="$ROOT_DIR/.env"
 
@@ -388,7 +388,7 @@ echo ""
 echo "==> Applying sandbox config"
 sandbox_ok=true
 run_prestart_cli config set agents.defaults.sandbox.mode "non-main"        >/dev/null || sandbox_ok=false
-run_prestart_cli config set agents.defaults.sandbox.scope "agent"          >/dev/null || sandbox_ok=false
+run_prestart_cli config set agents.defaults.sandbox.scope "session"          >/dev/null || sandbox_ok=false
 run_prestart_cli config set agents.defaults.sandbox.workspaceAccess "none" >/dev/null || sandbox_ok=false
 
 [[ "$sandbox_ok" == true ]] || \
